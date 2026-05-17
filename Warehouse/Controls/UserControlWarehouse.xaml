@@ -24,8 +24,11 @@
         <CommandBinding Command="local2:WindowCommands.WhAdd" Executed="WhAdd_Executed"/>
         <CommandBinding Command="local2:WindowCommands.WhEdit" Executed="WhEdit_Executed"/>
         <CommandBinding Command="local2:WindowCommands.WhDelete" Executed="WhDelete_Executed"/>
+        <CommandBinding Command="local2:WindowCommands.GetProducts" Executed="GetProducts_Executed"/>
+        <CommandBinding Command="local2:WindowCommands.AddProduct" Executed="AddProduct_Executed"/>
+        <CommandBinding Command="local2:WindowCommands.EditProduct" Executed="EditProduct_Executed"/>
+        <CommandBinding Command="local2:WindowCommands.RemoveProduct" Executed="RemoveProduct_Executed"/>
     </UserControl.CommandBindings>
-
 
 
     <Grid>
@@ -35,7 +38,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="lbxWhList" Grid.Column="0"
-                 ItemTemplate="{StaticResource listTemplate}" SelectionChanged="lbxWhList_SelectionChanged">
+                 ItemTemplate="{StaticResource listTemplate}" 
+                 SelectionChanged="lbxWhList_SelectionChanged" 
+                 MouseDoubleClick="DgWhs_MouseDoubleClick">
             <!---->
             <ListBox.ContextMenu>
                 <ContextMenu>
@@ -117,6 +122,14 @@
                             Width="80" />
 
                     </DataGrid.Columns>
+
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Hoвый товар" Command="local2:WindowCommands.AddProduct" />
+                            <MenuItem Header="Изменить товар" Command="local2:WindowCommands.EditProduct" />
+                            <MenuItem Header="Удалить товар" Command="local2:WindowCommands.RemoveProduct" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                 </DataGrid>
             </Grid>
         </DockPanel>

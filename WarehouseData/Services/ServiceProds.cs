@@ -20,7 +20,7 @@ namespace WarehouseData.Services
     {
         public ApplicationContext Context { get; set; }
 
-        public Warehouse Warehouse { get; private set; }
+        public Warehouse Warehouse { get; set; }
 
         public ServiceProds(ApplicationContext context, Warehouse warehouse)
         {

@@ -50,7 +50,7 @@ namespace Warehouse.Controls
 
             if (Org != null)
             {
-                if (Org.warehouses.Count > 0)
+                if (_whs != null)
                 {
                     _serviceProducts = new ServiceProds(ServiceWarehouse.Context, _whs);
                 }
@@ -124,28 +124,40 @@ namespace Warehouse.Controls
             }
         }
 
+        private void DgWhs_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            FillProductsCollection();
+        }
+
+        private void GetProducts_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            FillProductsCollection();
+        }
+
         private void AddProduct_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //ProductModWindow wnd =
-            //    new ProductModWindow(_serviceProducts, null, 1);
+            _serviceProducts.Warehouse = _whs;
+            ProductModWindow wnd =
+                new ProductModWindow("Добавить товар", null, _serviceProducts, 1);
 
-            //wnd.Owner = Window.GetWindow(this);
+            wnd.Owner = Window.GetWindow(this);
 
-            //if (wnd.ShowDialog() == true)
-            //    FillProductsCollection();
+            if (wnd.ShowDialog() == true)
+                FillProductsCollection();
         }
 
         private void EditProduct_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (_product != null)
             {
-                //ProductModWindow wnd =
-                //    new ProductModWindow(_serviceProducts, _product, 2);
+                _serviceProducts.Warehouse = _whs;
+                ProductModWindow wnd =
+                    new ProductModWindow("Изменить товар", _product, _serviceProducts, 2);
 
-                //wnd.Owner = Window.GetWindow(this);
+                wnd.Owner = Window.GetWindow(this);
 
-                //if (wnd.ShowDialog() == true)
-                //    FillProductsCollection();
+                if (wnd.ShowDialog() == true)
+                    FillProductsCollection();
             }
         }
 
@@ -153,13 +165,20 @@ namespace Warehouse.Controls
         {
             if (_product != null)
             {
-                //ProductModWindow wnd =
-                //    new ProductModWindow(_serviceProducts, _product, 3);
+                _serviceProducts.Warehouse = _whs;
+                ProductModWindow wnd =
+                    new ProductModWindow("Удалить товар", _product, _serviceProducts, 3);
 
-                //wnd.Owner = Window.GetWindow(this);
+                wnd.Owner = Window.GetWindow(this);
+                wnd.tbArticle.IsReadOnly = true;
+                wnd.tbName.IsReadOnly = true;
+                wnd.tbUnit.IsReadOnly = true;
+                wnd.cbCategory.IsEnabled = false;
+                wnd.cbManufacturer.IsEnabled = false;
+                wnd.cbSupplier.IsEnabled = false;
 
-                //if (wnd.ShowDialog() == true)
-                //    FillProductsCollection();
+                if (wnd.ShowDialog() == true)
+                    FillProductsCollection();
             }
         }
 

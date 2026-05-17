@@ -21,6 +21,10 @@ namespace WarehouseData.Context
             OrgsFill();
         }
 
+        public List<Category> Categories { get; set; }
+        public List<Manufacturer> Manufacturers { get; set; }
+        public List<Supplier> Suppliers { get; set; }
+
         public void OrgsFill()
         {
             Organization org1 = new Organization("Poгa и копыта, 000"); 
@@ -38,12 +42,27 @@ namespace WarehouseData.Context
             // Справочники
             Category catFood = new Category { Id = 1, Name = "Продукты" };
             Category catTech = new Category { Id = 2, Name = "Техника" };
+            Categories = new List<Category>
+            {
+                    catFood,
+                    catTech
+            };
 
             Manufacturer manSamsung = new Manufacturer { Id = 1, Name = "Samsung" };
             Manufacturer manNestle = new Manufacturer { Id = 2, Name = "Nestle" };
+            Manufacturers = new List<Manufacturer>
+            {
+                manSamsung,
+                manNestle
+            };
 
             Supplier supMetro = new Supplier { Id = 1, Name = "Metro" };
             Supplier supDns = new Supplier { Id = 2, Name = "DNS" };
+            Suppliers = new List<Supplier>
+            {
+                supMetro,
+                supDns
+            };
 
             // Товары для склада 1
             wh1.products.Add(new Product

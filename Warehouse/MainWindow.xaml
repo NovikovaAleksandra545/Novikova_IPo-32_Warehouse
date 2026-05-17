@@ -26,11 +26,11 @@
                 <MenuItem Header="Удалить склад" Command="{x:Static local:WindowCommands.WhDelete}" />
             </MenuItem>
             <MenuItem Header="Toвap">
-                <MenuItem Header="Открыть список товарoв" Command="local:WindowCommands.GetProducts" /> 
+                <MenuItem Header="Показать список" Command="{x:Static local:WindowCommands.GetProducts}" /> 
                 <Separator/>
-                <MenuItem Header="Добавить описание товара" />
-                <MenuItem Header="Изменить описание товара" />
-                <MenuItem Header="Удалить описание товара" />
+                <MenuItem Header="Добавить описание товара" Command="{x:Static local:WindowCommands.AddProduct}"/>
+                <MenuItem Header="Изменить описание товара" Command="{x:Static local:WindowCommands.EditProduct}"/>
+                <MenuItem Header="Удалить описание товара" Command="{x:Static local:WindowCommands.RemoveProduct}"/>
             </MenuItem>
             <MenuItem Header="Накладныe">
                 <MenuItem Header="Открыть список накладныx" Command="local:WindowCommands.GetOrders" /> 
