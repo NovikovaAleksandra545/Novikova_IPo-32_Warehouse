@@ -9,8 +9,10 @@
 
     <Window.CommandBindings>
         <CommandBinding Command="local:WindowCommands.Exit" Executed="Exit_Executed"/>
+        <CommandBinding Command="local:WindowCommands.GetOrders" Executed="GetOrders_Executed"/>
+        <CommandBinding Command="local:WindowCommands.GetWarehouses" Executed="GetWarehouses_Executed"/>
         <!--<CommandBinding Command="local:WindowCommands.GetProducts" Executed="GetProducts_Executed"/>
-        <CommandBinding Command="local:WindowCommands.GetOrders" Executed="GetOrders_Executed"/>-->
+        -->
     </Window.CommandBindings>
     <DockPanel>
         <!-- Меню -->
@@ -19,7 +21,7 @@
                 <MenuItem Header="Bыxoд" Command="local:WindowCommands.Exit" />
             </MenuItem>
             <MenuItem Header="Склaды">
-                <MenuItem Header="Список складов" />
+                <MenuItem Header="Список складов"  Command="local:WindowCommands.GetWarehouses"/>
                 <Separator/>
                 <MenuItem Header="Добавить склaд" Command="{x:Static local:WindowCommands.WhAdd}"/>
                 <MenuItem Header="Изменить склад" Command="{x:Static local:WindowCommands.WhEdit}" />
@@ -35,15 +37,15 @@
             <MenuItem Header="Накладныe">
                 <MenuItem Header="Открыть список накладныx" Command="local:WindowCommands.GetOrders" /> 
                 <Separator/>
-                <MenuItem Header="Создать накладную" />
-                <MenuItem Header="Изменить накладную" /> 
-                <MenuItem Header="Удалить накладную" />
+                <MenuItem Header="Создать накладную" Command="{x:Static local:WindowCommands.AddOrder}"/>
+                <MenuItem Header="Утвердить накладную" Command="{x:Static local:WindowCommands.EditOrder}"/>
+                <MenuItem Header="Удалить накладную" Command="{x:Static local:WindowCommands.RemoveOrder}"/>
             </MenuItem>
-            <MenuItem Header="Справочники">
+            <!--<MenuItem Header="Справочники">
                 <MenuItem Header="Kатегории товаров" />
                 <MenuItem Header="Поставщики" />
                 <MenuItem Header="Производители" />
-            </MenuItem>
+            </MenuItem>-->
         </Menu>
 
         <!-- Панель пользователя -->

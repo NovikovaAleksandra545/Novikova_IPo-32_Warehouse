@@ -198,6 +198,142 @@ namespace WarehouseData.Context
                 Supplier = supDns
             });
 
+            // Накладные для склада 1
+            Order order1 = new Order
+            {
+                Number = "INC-001",
+                Type = OrderType.Incoming,
+                Status = OrderStatus.NotApproved,
+                WarehouseId = wh1.WhId
+            };
+
+            order1.Products.Add(new Product
+            {
+                Article = "NEW001",
+                Name = "Новый товар",
+                Unit = "шт",
+                Price = 15.5m,
+                CategoryId = catFood.Id,
+                ManufacturerId = manNestle.Id,
+                SupplierId = supMetro.Id,
+                StockQuantity = 30,
+                DiscountPercent = 0,
+                Category = catFood,
+                Manufacturer = manNestle,
+                Supplier = supMetro
+            });
+
+            Order order2 = new Order
+            {
+                Number = "OUT-001",
+                Type = OrderType.Outgoing,
+                Status = OrderStatus.NotApproved,
+                WarehouseId = wh1.WhId
+            };
+
+            order2.Products.Add(new Product
+            {
+                Article = "MILK001",
+                Name = "Молоко 3.2%",
+                Unit = "шт",
+                Price = 2.50m,
+                CategoryId = catFood.Id,
+                ManufacturerId = manNestle.Id,
+                SupplierId = supMetro.Id,
+                StockQuantity = 10,
+                DiscountPercent = 5,
+                Category = catFood,
+                Manufacturer = manNestle,
+                Supplier = supMetro
+            });
+
+            wh1.Orders.Add(order1);
+            wh1.Orders.Add(order2);
+
+
+            // Накладные для склада 2
+            Order order3 = new Order
+            {
+                Number = "INC-002",
+                Type = OrderType.Incoming,
+                Status = OrderStatus.NotApproved,
+                WarehouseId = wh2.WhId
+            };
+
+            order3.Products.Add(new Product
+            {
+                Article = "COF002",
+                Name = "Кофе зерновой",
+                Unit = "шт",
+                Price = 8.30m,
+                CategoryId = catFood.Id,
+                ManufacturerId = manNestle.Id,
+                SupplierId = supMetro.Id,
+                StockQuantity = 20,
+                DiscountPercent = 3,
+                Category = catFood,
+                Manufacturer = manNestle,
+                Supplier = supMetro
+            });
+
+            wh2.Orders.Add(order3);
+
+
+            // Накладные для склада 3
+            Order order4 = new Order
+            {
+                Number = "OUT-002",
+                Type = OrderType.Outgoing,
+                Status = OrderStatus.Approved,
+                WarehouseId = wh3.WhId
+            };
+
+            order4.Products.Add(new Product
+            {
+                Article = "TAB001",
+                Name = "Планшет",
+                Unit = "шт",
+                Price = 220.00m,
+                CategoryId = catTech.Id,
+                ManufacturerId = manSamsung.Id,
+                SupplierId = supDns.Id,
+                StockQuantity = 1,
+                DiscountPercent = 8,
+                Category = catTech,
+                Manufacturer = manSamsung,
+                Supplier = supDns
+            });
+
+            wh3.Orders.Add(order4);
+
+
+            // Накладные для склада 4
+            Order order5 = new Order
+            {
+                Number = "INC-003",
+                Type = OrderType.Incoming,
+                Status = OrderStatus.NotApproved,
+                WarehouseId = wh4.WhId
+            };
+
+            order5.Products.Add(new Product
+            {
+                Article = "PHONE002",
+                Name = "Смартфон Lite",
+                Unit = "шт",
+                Price = 499.00m,
+                CategoryId = catTech.Id,
+                ManufacturerId = manSamsung.Id,
+                SupplierId = supDns.Id,
+                StockQuantity = 4,
+                DiscountPercent = 0,
+                Category = catTech,
+                Manufacturer = manSamsung,
+                Supplier = supDns
+            });
+
+            wh4.Orders.Add(order5);
+
             org1.warehouses.Add(wh1);
             org1.warehouses.Add(wh2);
             org2.warehouses.Add(wh3);

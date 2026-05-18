@@ -20,11 +20,13 @@ namespace Warehouse
             OrgEdit = new RoutedCommand("OrgEdit", typeof(OrgsView)); 
             OrgDelete = new RoutedCommand("OrgDelete", typeof(OrgsView));
 
+            
             WhAdd = new RoutedCommand("WhAdd", typeof(UserControlWarehouse)); 
             WhEdit = new RoutedCommand("WhEdit", typeof(UserControlWarehouse)); 
             WhDelete = new RoutedCommand("WhDelete", typeof(UserControlWarehouse));
 
             Exit = new RoutedCommand("Exit", typeof(MainWindow));
+            GetWarehouses = new RoutedCommand("GetWarehouses", typeof(MainWindow));
             GetProducts = new RoutedCommand("GetProducts", typeof(MainWindow)); 
             AddProduct = new RoutedCommand("AddProduct", typeof(MainWindow)); 
             EditProduct = new RoutedCommand("EditProduct", typeof(MainWindow)); 
@@ -68,6 +70,8 @@ namespace Warehouse
         public static RoutedCommand OrgEdit { get; set; }
 
         public static RoutedCommand OrgDelete { get; set; }
+
+        public static RoutedCommand GetWarehouses { get; set; }
 
         public static RoutedCommand WhAdd { get; set; }
 

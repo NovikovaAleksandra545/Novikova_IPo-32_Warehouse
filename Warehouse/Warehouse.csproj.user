@@ -2,7 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Controls\UserControlOrders.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\UserControlWarehouse.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ModalWins\OrderModWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ModalWins\OrgModWindow.xaml.cs">

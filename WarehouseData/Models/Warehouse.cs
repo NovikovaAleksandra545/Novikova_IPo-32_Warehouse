@@ -32,6 +32,9 @@ namespace WarehouseData.Models
         [ForeignKey("OrgId")]
         Organization Organization { get; set; }
 
+        public ObservableCollection<Order> Orders { get; set; }
+            = new ObservableCollection<Order>();
+
         public ObservableCollection<Product> products { get; set; }
             = new ObservableCollection<Product>();
 

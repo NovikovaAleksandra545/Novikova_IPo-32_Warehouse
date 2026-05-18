@@ -24,7 +24,11 @@ namespace Warehouse
         private ApplicationContext _context;
         private Organization? _org;
 
+        private UserControlOrders userControlOrders;
+        private UserControlWarehouse userControlWarehouse;
+
         public ServiceWhs serviceWhs {  get; private set; }
+        public ServiceOrds serviceOrds { get; private set; }
 
         public MainWindow(ApplicationContext applicationContext, Organization org)
         {
@@ -40,14 +44,32 @@ namespace Warehouse
             }
 
             serviceWhs = new ServiceWhs(applicationContext, org);
+            
 
-
-            this.MainFrame.Navigate(new UserControlWarehouse(serviceWhs));
+            userControlWarehouse = new UserControlWarehouse(serviceWhs);
+            this.MainFrame.Navigate(userControlWarehouse);
         }
 
         private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void GetOrders_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (!userControlWarehouse.IsEmptyWhs())
+            {
+                serviceOrds = new ServiceOrds(
+                    _context,
+                    userControlWarehouse.GetCurrentWarehouse());
+                userControlOrders = new UserControlOrders(serviceOrds);
+                MainFrame.Navigate(userControlOrders);
+            }
+        }
+
+        private void GetWarehouses_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.MainFrame.Navigate(userControlWarehouse);
         }
     }
 }

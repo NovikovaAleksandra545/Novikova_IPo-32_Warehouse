@@ -40,9 +40,6 @@ namespace Warehouse.Controls
             InitializeComponent();
             Org = serviceWhs.Org;
             ServiceWarehouse = serviceWhs;
-            
-
-
 
             FillWarehouseCollection();
             FillProductsCollection();
@@ -134,59 +131,6 @@ namespace Warehouse.Controls
             FillProductsCollection();
         }
 
-        private void AddProduct_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            _serviceProducts.Warehouse = _whs;
-            ProductModWindow wnd =
-                new ProductModWindow("Добавить товар", null, _serviceProducts, 1);
-
-            wnd.Owner = Window.GetWindow(this);
-
-            if (wnd.ShowDialog() == true)
-                FillProductsCollection();
-        }
-
-        private void EditProduct_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (_product != null)
-            {
-                _serviceProducts.Warehouse = _whs;
-                ProductModWindow wnd =
-                    new ProductModWindow("Изменить товар", _product, _serviceProducts, 2);
-
-                wnd.Owner = Window.GetWindow(this);
-
-                if (wnd.ShowDialog() == true)
-                    FillProductsCollection();
-            }
-        }
-
-        private void RemoveProduct_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (_product != null)
-            {
-                _serviceProducts.Warehouse = _whs;
-                ProductModWindow wnd =
-                    new ProductModWindow("Удалить товар", _product, _serviceProducts, 3);
-
-                wnd.Owner = Window.GetWindow(this);
-                wnd.tbArticle.IsReadOnly = true;
-                wnd.tbName.IsReadOnly = true;
-                wnd.tbUnit.IsReadOnly = true;
-                wnd.cbCategory.IsEnabled = false;
-                wnd.cbManufacturer.IsEnabled = false;
-                wnd.cbSupplier.IsEnabled = false;
-
-                if (wnd.ShowDialog() == true)
-                    FillProductsCollection();
-            }
-        }
-
-        private void DgProducts_MouseDoubleClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
 
@@ -209,6 +153,16 @@ namespace Warehouse.Controls
         private void DgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _product = DgProducts.SelectedItem as Product;
+        }
+
+        public bool IsEmptyWhs()
+        {
+            return _whs == null;
+        }
+
+        public WarehouseData.Models.Warehouse? GetCurrentWarehouse()
+        {
+            return _whs;
         }
     }
 }

@@ -47,6 +47,9 @@ namespace Warehouse.Views.ModalWins
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
+
             switch (_mode)
             {
                 case 1:
@@ -80,6 +83,28 @@ namespace Warehouse.Views.ModalWins
         {
             DialogResult = false;
             Close();
+        }
+
+        private bool ValidateForm()
+        {
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
+                ShowError("Введите название организации", tbName);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ShowError(string message, Control? control = null)
+        {
+            MessageBox.Show(
+                message,
+                "Ошибка ввода",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+
+            control?.Focus();
         }
     }
 }

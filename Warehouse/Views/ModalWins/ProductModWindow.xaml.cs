@@ -66,10 +66,13 @@ namespace Warehouse.Views.ModalWins
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
+
             switch (_mode)
             {
                 case 1:
-                    if (_service.Warehouse != null)
+                    if (_service.Order != null)
                     {
                         Product newProduct = new Product
                         {
@@ -86,13 +89,13 @@ namespace Warehouse.Views.ModalWins
                             Supplier = (Supplier)cbSupplier.SelectedItem
                         };
 
-                        _service.Add(newProduct);
+                        _service.AddInOrder(newProduct);
                     }
                     
                     break;
 
                 case 2:
-                    if (_service.Warehouse != null && _product != null)
+                    if (_service.Order != null && _product != null)
                     {
                         _product.Article = tbArticle.Text;
                         _product.Name = tbName.Text;
@@ -106,14 +109,14 @@ namespace Warehouse.Views.ModalWins
                         _product.Manufacturer = (Manufacturer)cbManufacturer.SelectedItem;
                         _product.Supplier = (Supplier)cbSupplier.SelectedItem;
 
-                        _service.Update(_product);
+                        _service.UpdateInOrder(_product);
                     }
                     break;
 
                 case 3:
-                    if (_service.Warehouse != null && _product != null)
+                    if (_service.Order != null && _product != null)
                     {
-                        _service.Delete(_product);
+                        _service.DeleteInOrder(_product);
                     }
                     break;
             }
@@ -126,6 +129,97 @@ namespace Warehouse.Views.ModalWins
         {
             DialogResult = false;
             Close();
+        }
+
+        private bool ValidateForm()
+        {
+            if (string.IsNullOrWhiteSpace(tbArticle.Text))
+            {
+                ShowError("Введите артикул", tbArticle);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
+                ShowError("Введите наименование товара", tbName);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbUnit.Text))
+            {
+                ShowError("Введите единицу измерения", tbUnit);
+                return false;
+            }
+
+            if (!decimal.TryParse(tbPrice.Text, out decimal price))
+            {
+                ShowError("Цена должна быть числом", tbPrice);
+                return false;
+            }
+
+            if (price < 0)
+            {
+                ShowError("Цена не может быть отрицательной", tbPrice);
+                return false;
+            }
+
+            if (!int.TryParse(tbQuantity.Text, out int qty))
+            {
+                ShowError("Количество должно быть целым числом", tbQuantity);
+                return false;
+            }
+
+            if (qty < 0)
+            {
+                ShowError("Количество не может быть отрицательным", tbQuantity);
+                return false;
+            }
+
+            if (!decimal.TryParse(tbDiscount.Text, out decimal discount))
+            {
+                ShowError("Скидка должна быть числом", tbDiscount);
+                return false;
+            }
+
+            if (discount < 0 || discount > 100)
+            {
+                ShowError("Скидка должна быть от 0 до 100", tbDiscount);
+                return false;
+            }
+
+            if (cbCategory.SelectedItem == null)
+            {
+                ShowError("Выберите категорию");
+                cbCategory.Focus();
+                return false;
+            }
+
+            if (cbManufacturer.SelectedItem == null)
+            {
+                ShowError("Выберите производителя");
+                cbManufacturer.Focus();
+                return false;
+            }
+
+            if (cbSupplier.SelectedItem == null)
+            {
+                ShowError("Выберите поставщика");
+                cbSupplier.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ShowError(string message, Control? control = null)
+        {
+            MessageBox.Show(
+                message,
+                "Ошибка ввода",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+
+            control?.Focus();
         }
     }
 }

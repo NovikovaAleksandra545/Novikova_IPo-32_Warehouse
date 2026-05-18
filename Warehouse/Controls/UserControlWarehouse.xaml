@@ -25,9 +25,6 @@
         <CommandBinding Command="local2:WindowCommands.WhEdit" Executed="WhEdit_Executed"/>
         <CommandBinding Command="local2:WindowCommands.WhDelete" Executed="WhDelete_Executed"/>
         <CommandBinding Command="local2:WindowCommands.GetProducts" Executed="GetProducts_Executed"/>
-        <CommandBinding Command="local2:WindowCommands.AddProduct" Executed="AddProduct_Executed"/>
-        <CommandBinding Command="local2:WindowCommands.EditProduct" Executed="EditProduct_Executed"/>
-        <CommandBinding Command="local2:WindowCommands.RemoveProduct" Executed="RemoveProduct_Executed"/>
     </UserControl.CommandBindings>
 
 
@@ -85,7 +82,7 @@
           SelectionMode="Single"
           Grid.Row="1"
           SelectionChanged="DgProducts_SelectionChanged"
-          MouseDoubleClick="DgProducts_MouseDoubleClick"
+          
           Margin="5"
           HeadersVisibility="Column"
           RowHeight="30"
